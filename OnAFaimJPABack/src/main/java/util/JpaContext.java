@@ -9,7 +9,7 @@ public class JpaContext {
 	
 	public static EntityManagerFactory getInstance() {
 		if (emf==null) {
-			emf=Persistence.createEntityManagerFactory("tp1");
+			emf=Persistence.createEntityManagerFactory("OnAFaimJPA");
 		}
 		return emf;
 	}
