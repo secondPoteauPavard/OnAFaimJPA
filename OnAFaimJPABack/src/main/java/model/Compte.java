@@ -39,6 +39,8 @@ public abstract class Compte {
 	private int version;
 	@OneToMany(mappedBy="idCom.commande") //DOUTE
 	private Set<Commande> commandes;
+	@OneToMany(mappedBy="idProd.commande") //DOUTE
+	private Set<Devis> deviss;
 	
 	
 	
