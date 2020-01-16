@@ -37,13 +37,14 @@ public class Commande {
 	@Column(name="dateCommande")
 	private Date date;
 	@ManyToOne
-	@JoinColumn(name="compte_id", foreignKey = @ForeignKey(name="commande_compte_id_fk"))
+	@JoinColumn(name="compte_id", foreignKey = @ForeignKey(name="commande_compte_fk"))
 	private Compte compte;
 	@OneToMany
 	@JoinColumn(name="ligne_commande", foreignKey = @ForeignKey(name="commande_ligne_commande_fk"))
 	private Set<LigneCommande> panier;
 	@Version
 	private int version;
+
 	
 
 	public Commande() {
