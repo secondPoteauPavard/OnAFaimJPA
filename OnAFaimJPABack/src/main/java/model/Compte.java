@@ -37,9 +37,9 @@ public abstract class Compte {
 	private Etat compteEtat;
 	@Version
 	private int version;
-	@OneToMany(mappedBy="idCom.commande") //DOUTE
+	@OneToMany(mappedBy="idCom.commande") //PAS UNE ERREUR 
 	private Set<Commande> commandes;
-	@OneToMany(mappedBy="idDevis.commande") //DOUTE
+	@OneToMany(mappedBy="idDevis.commande") //PAS UNE ERREUR
 	private Set<Devis> deviss;
 	
 	

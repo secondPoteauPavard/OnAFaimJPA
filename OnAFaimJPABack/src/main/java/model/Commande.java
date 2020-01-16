@@ -39,8 +39,7 @@ public class Commande {
 	@ManyToOne
 	@JoinColumn(name="compte_id", foreignKey = @ForeignKey(name="commande_compte_fk"))
 	private Compte compte;
-	@OneToMany
-	@JoinColumn(name="ligne_commande", foreignKey = @ForeignKey(name="commande_ligne_commande_fk"))
+	@OneToMany (mappedBy= "id.commande") //PAS UNE ERREUR
 	private Set<LigneCommande> panier;
 	@Version
 	private int version;
