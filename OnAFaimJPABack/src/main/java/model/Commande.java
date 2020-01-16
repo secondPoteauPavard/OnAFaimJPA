@@ -9,10 +9,10 @@ public class Commande {
 	private String cEtat; // "en_attente" par défaut
 	private double prixTot; // 0 par défaut
 	private int idCompte;
-	private List<ListProduit> panier;
+	private List<LigneCommande> panier;
 	
 	
-	public Commande(int idCommande, int cEval, String cEtat, double prixTot, int idCompte, List<ListProduit> panier) { //
+	public Commande(int idCommande, int cEval, String cEtat, double prixTot, int idCompte, List<LigneCommande> panier) { //
 		this.idCommande = idCommande;
 		this.cEval = cEval;
 		this.cEtat = cEtat;
@@ -23,7 +23,7 @@ public class Commande {
 
 
 	// Constructeur sans idCommande
-	public Commande(int cEval, String cEtat, double prixTot, int idCompte, List<ListProduit> panier) {
+	public Commande(int cEval, String cEtat, double prixTot, int idCompte, List<LigneCommande> panier) {
 		this.cEval = cEval;
 		this.cEtat = cEtat;
 		this.prixTot = prixTot;
@@ -33,7 +33,7 @@ public class Commande {
 
 	
 	// Constructeur sans idCommande,cEval 
-	public Commande(String cEtat, double prixTot, int idCompte, List<ListProduit> panier) {
+	public Commande(String cEtat, double prixTot, int idCompte, List<LigneCommande> panier) {
 		this.cEtat = cEtat;
 		this.prixTot = prixTot;
 		this.idCompte = idCompte;
@@ -89,11 +89,11 @@ public class Commande {
 	}
 
 
-	public List<ListProduit> getPanier() {
+	public List<LigneCommande> getPanier() {
 		return panier;
 	}
 
-	public void setPanier(List<ListProduit> panier) {
+	public void setPanier(List<LigneCommande> panier) {
 		this.panier = panier;
 	}
 
