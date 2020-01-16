@@ -15,25 +15,25 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="account")
-public abstract class Compte {
+public class Compte {
 
 	@Id
 	private Integer idCompte; 
-	@Column(name="last_name", length=30, nullable=true)
+	@Column(name="last_name", nullable=false)
 	private String nom;
-	@Column(name="first_name", length=30, nullable=true)
+	@Column(name="first_name", nullable=false)
 	private String prenom; 
-	@Column(name="number", length=10, nullable=true)
+	@Column(name="number", length=10, nullable=false)
 	private String numero;
-	@Column(name="email", length=30, nullable=true)
+	@Column(name="email", nullable=false)
 	@Email
 	private String email; 
-	@Column(name="password", length=30, nullable=true)
+	@Column(name="password", nullable=false)
 	private String mdp; 
-	@Column(name="type", length=30, nullable=true)
+	@Column(name="type", nullable=false)
 	private String type; 
 	@Enumerated(EnumType.STRING)
-	@Column(name="account_status", length=30, nullable=true, columnDefinition="'en_attente'")
+	@Column(name="account_status", columnDefinition="'en_attente'")
 	private Etat compteEtat;
 	@Version
 	private int version;
