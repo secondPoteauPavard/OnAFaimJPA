@@ -104,7 +104,7 @@ public class Produit {
 
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
-	}
+	} 
 
 
 	@Override
