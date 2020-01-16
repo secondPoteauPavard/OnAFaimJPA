@@ -1,103 +1,155 @@
 package model;
 
-public class Compte {
+import java.util.Set;
 
-	private int idCompte; 
-	private String nom; 
-	private String mdp; 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Version;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
+
+@Entity
+@Table(name="account")
+public abstract class Compte {
+
+	@Id
+	private Integer idCompte; 
+	@Column(name="last_name", length=30, nullable=true)
+	private String nom;
+	@Column(name="first_name", length=30, nullable=true)
+	private String prenom; 
+	@Column(name="number", length=10, nullable=true)
+	private String numero;
+	@Column(name="email", length=30, nullable=true)
+	@Email
 	private String email; 
+	@Column(name="password", length=30, nullable=true)
+	private String mdp; 
+	@Column(name="type", length=30, nullable=true)
 	private String type; 
-	private String compteEtat;
+	@Enumerated(EnumType.STRING)
+	@Column(name="account_status", length=30, nullable=true, columnDefinition="'en_attente'")
+	private Etat compteEtat;
+	@Version
+	private int version;
+	@OneToMany(mappedBy="idCom.commande") //DOUTE
+	private Set<Commande> commandes;
 	
 	
-	public Compte(int idCompte, String nom, String mdp, String email, String type, String compteEtat) {
-		this.idCompte = idCompte;
-		this.nom = nom;
-		this.mdp = mdp;
-		this.email = email;
-		this.type = type;
-		this.compteEtat = compteEtat;
+	
+	public Compte() {
 	}
 
-	public Compte(int idCompte, String nom, String email, String type, String compteEtat) {
-		this.idCompte = idCompte;
+	public Compte(String nom, String prenom, String numero, String email, String mdp) {
 		this.nom = nom;
+		this.prenom = prenom;
+		this.numero = numero;
 		this.email = email;
-		this.type = type;
-		this.compteEtat = compteEtat;
+		this.mdp = mdp;
 	}
 
-	public Compte(String nom, String mdp, String email, String type, String compteEtat) {
-		this.nom = nom;
-		this.mdp = mdp;
-		this.email = email;
-		this.type = type;
-		this.compteEtat = compteEtat;
+	public Integer getIdCompte() {
+		return idCompte;
 	}
-	
-	public Compte(String nom, String mdp) {
-		this.nom = nom;
-		this.mdp = mdp;
+
+	public void setIdCompte(Integer idCompte) {
+		this.idCompte = idCompte;
 	}
-	
+
 	public String getNom() {
 		return nom;
 	}
-
 
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
-
-	public String getMdp() {
-		return mdp;
+	public String getPrenom() {
+		return prenom;
 	}
 
-
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
 
 	public String getType() {
 		return type;
 	}
 
-
 	public void setType(String type) {
 		this.type = type;
 	}
 
-
-	public String getCompteEtat() {
+	public Etat getCompteEtat() {
 		return compteEtat;
 	}
 
-
-	public void setCompteEtat(String compteEtat) {
+	public void setCompteEtat(Etat compteEtat) {
 		this.compteEtat = compteEtat;
 	}
 
-
-	public int getIdCompte() {
-		return idCompte;
+	public int getVersion() {
+		return version;
 	}
 
+	public void setVersion(int version) {
+		this.version = version;
+	}
 
 	@Override
-	public String toString() {
-		return "Compte [idCompte=" + idCompte + ", nom=" + nom + ", mdp=" + mdp + ", email=" + email + ", type="
-				+ type + ", compteEtat=" + compteEtat + "]";
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idCompte == null) ? 0 : idCompte.hashCode());
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Compte other = (Compte) obj;
+		if (idCompte == null) {
+			if (other.idCompte != null)
+				return false;
+		} else if (!idCompte.equals(other.idCompte))
+			return false;
+		return true;
+	}
+	
+	
+
 }
