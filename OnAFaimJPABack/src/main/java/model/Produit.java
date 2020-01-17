@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="produit")
-@SequenceGenerator(name="seqProduit", sequenceName = "seq_produit", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name="seqProduit", sequenceName = "seq_produit", initialValue = 100, allocationSize = 1)
 
 public class Produit {
 	@Id

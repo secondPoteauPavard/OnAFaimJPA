@@ -17,7 +17,7 @@ import javax.validation.constraints.Email;
 
 @Entity
 @Table(name="compte")
-@SequenceGenerator(name="seqCompte", sequenceName = "seq_Compte", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name="seqCompte", sequenceName = "seq_Compte", initialValue = 100, allocationSize = 1)
 public class Compte {
 
 	@Id
