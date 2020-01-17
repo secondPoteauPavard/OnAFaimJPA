@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -27,8 +28,9 @@ public class Devis {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="seqDevis")
 	private Long idDevis;
+	@Lob
 	@Column(name="eval")
-	private int dEval;
+	private String dEval;
 	@Column(name="prix")
 	private double prix;
 	@Column(name="etat",length=15)
@@ -60,12 +62,12 @@ public class Devis {
 	}
 
 
-	public int getdEval() {
+	public String getdEval() {
 		return dEval;
 	}
 
 
-	public void setdEval(int dEval) {
+	public void setdEval(String dEval) {
 		this.dEval = dEval;
 	}
 

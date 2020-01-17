@@ -10,6 +10,7 @@ public interface DAOProduit extends DAOGeneric<Produit,Long> {
 	
 	public List<Produit> findBySize(TailleProduit size); 
 	public List<Produit> findByType(TypeProduit type); 
+
 	
 	
 }

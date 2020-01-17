@@ -126,6 +126,8 @@ class DAOProduitJpaImpl implements DAOProduit {
 
 	
 
+	
+
 
 	
 }

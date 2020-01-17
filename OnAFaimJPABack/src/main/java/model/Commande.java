@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -28,8 +29,9 @@ public class Commande {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="seqCommande")
 	private Long idCom; 
+	@Lob
 	@Column(name="eval",length=255)
-	private int cEval; 
+	private String cEval; 
 	@Enumerated(EnumType.STRING)
 	@Column(name="etat",length=1)
 	private Etat cEtat=Etat.W; // "en_attente" par défaut
@@ -60,12 +62,12 @@ public class Commande {
 	}
 
 
-	public int getcEval() {
+	public String getcEval() {
 		return cEval;
 	}
 
 
-	public void setcEval(int cEval) {
+	public void setcEval(String cEval) {
 		this.cEval = cEval;
 	}
 

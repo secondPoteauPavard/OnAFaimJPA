@@ -47,7 +47,7 @@ public class AppTestLovelyse {
 		daoC.insert(c);
 		
 		
-		for (int i=0;i<30;i++) {
+		for (int i=0;i<6;i++) {
 			if (i%2==0) {
 				c=new Compte("doe"+i,"john"+i,"0644702425","john"+i+"@doe.fr","mdp");
 				daoC.insert(c); // Insert compte

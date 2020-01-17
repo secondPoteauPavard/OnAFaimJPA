@@ -13,6 +13,7 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name="produit")
@@ -40,7 +41,10 @@ public class Produit {
 	private byte[] photo;
 	@OneToMany(mappedBy = "id.produit")
 	private Set<LigneCommande> ligneCommandes; 
-
+	@Column(name="moy_eval")
+	private int moyPEval=5;
+	@Version
+	private int version;
 	
 	
 	
@@ -125,6 +129,26 @@ public class Produit {
 
 	public void setLigneCommandes(Set<LigneCommande> ligneCommandes) {
 		this.ligneCommandes = ligneCommandes;
+	}
+
+
+	public int getpEval() {
+		return pEval;
+	}
+
+
+	public void setpEval(int pEval) {
+		this.pEval = pEval;
+	}
+
+
+	public int getVersion() {
+		return version;
+	}
+
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 
