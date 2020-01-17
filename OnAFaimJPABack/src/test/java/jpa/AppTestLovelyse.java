@@ -90,9 +90,9 @@ public class AppTestLovelyse {
 //		Compte c=new Compte("lete","lovelyse","0644702418","thibautlesueur@hotmail.fr","mdp");
 //		daoC.insert(c);
 		
-		List<Devis> l=new ArrayList<Devis>();		
-		l=daoD.findDevisByCEtat(Etat.W);
-		System.out.println(l);
+//		List<Devis> l=new ArrayList<Devis>();		
+//		l=daoD.findDevisByCEtat(Etat.W);
+//		System.out.println(l);
 		
 //		List<Commande> l=new ArrayList<Commande>();		
 //		l=daoCom.findCommandeByCEtat(Etat.W);
