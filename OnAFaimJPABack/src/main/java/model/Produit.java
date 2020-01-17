@@ -33,7 +33,7 @@ public class Produit {
 	@Lob
 	@Column(name="picture")
 	private byte[] photo;
-	@OneToMany(mappedBy = "")
+	//@OneToMany(mappedBy = "")
 	private LigneCommandePK ligneCommandePK; 
 	
 	
