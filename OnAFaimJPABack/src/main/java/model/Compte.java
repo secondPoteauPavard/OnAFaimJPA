@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.Email;
 
@@ -40,6 +43,9 @@ public class Compte {
 	@Enumerated(EnumType.STRING)
 	@Column(name="compte_etat",length=1)
 	private Etat compteEtat=Etat.W;
+	@Column(name="date_de_creation")
+	@Temporal(TemporalType.DATE)
+	private Date dateCreation;
 	@Version
 	private int version;
 	@OneToMany(mappedBy="compte") //PAS UNE ERREUR 
@@ -145,6 +151,14 @@ public class Compte {
 		this.deviss = deviss;
 	}
 	
+	public Date getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
 	public void setVersion(int version) {
 		this.version = version;
 	}
