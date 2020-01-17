@@ -1,6 +1,7 @@
 package jpa;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -47,6 +48,7 @@ public class AppTestThibaut {
 		Compte c=new Compte("adminnom","adminprenom","0644778418","admin@admin.fr","admin");
 		c.setType(TypeCompte.admin);
 		daoC.insert(c);
+	
 		
 		
 		
@@ -83,7 +85,8 @@ public class AppTestThibaut {
 		
 		List<Devis> l=new ArrayList();		
 		l=daoD.findDevisByCEtat(Etat.W);
-		System.out.println(l);
+		//System.out.println(l);
+		
 
 		
 		
