@@ -26,7 +26,7 @@ public class DAOLigneCommandeJpaImpl implements DAOLigneCommande {
 	public List<LigneCommande> findAll() {
 		EntityManager em = JpaContext.getInstance().createEntityManager(); 
 		List<LigneCommande> LigneCommandes = null; 
-		Query query = em.createQuery("from LigneCommande e");				
+		Query query = em.createQuery("from LigneCommande lc");				
 		LigneCommandes = query.getResultList(); 										
 		em.close();
 		return LigneCommandes;	
