@@ -3,33 +3,37 @@ package model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="produit")
-
+@SequenceGenerator(name="seqProduit", sequenceName = "seq_produit", initialValue = 1, allocationSize = 1)
 
 public class Produit {
 	@Id
-	@OneToMany
-	@JoinColumn(name="produit_id", foreignKey = @ForeignKey(name="commande_produit_produit_id_fk"))
+	@GeneratedValue(generator = "seqProduit", strategy = GenerationType.SEQUENCE)
+	//@OneToMany(mappedBy = "id.produit")
+	//@JoinColumn(name="produit_id", foreignKey = @ForeignKey(name="commande_produit_produit_id_fk"))
 	private int idProduit;
-	@Column(name="wording", length=50)
+	@Column(name="wording", nullable = true)
 	private String libelle;
-	@Column(name="size")
+	@Column(name="size", nullable = true)
 	private String taille;
-	@Column(name="price", length=10)
+	@Column(name="price", nullable = true)
 	private double prix;
 	private Type type; 
 	@Lob
-	@Column(name="description", length=100)
+	@Column(name="description")
 	private String Description; 
 	@Lob
-	@Column(name="picture")
+	@Column(name="picture", nullable = true)
 	private byte[] photo;
 
 	

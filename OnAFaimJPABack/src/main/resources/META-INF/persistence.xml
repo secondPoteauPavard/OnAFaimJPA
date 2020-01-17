@@ -13,7 +13,12 @@
         </provider>
         
         <!-- <class>model.Eleve</class> -->
-
+		<class>model.Produit</class>
+		<class>model.Commande</class>
+		<class>model.Compte</class>
+		<class>model.Devis</class>
+		<class>model.LigneCommande</class>
+        <class>model.LigneCommandePK</class>
         
         <properties>
 	        <!--  Propriétés à mettre en place : driver -->
