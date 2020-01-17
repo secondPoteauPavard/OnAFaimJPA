@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,8 +35,8 @@ public class Produit {
 	@Lob
 	@Column(name="picture")
 	private byte[] photo;
-	@OneToMany(mappedBy = "")
-	private LigneCommandePK ligneCommandePK; 
+	@OneToMany(mappedBy = "id.produit")
+	private Set<LigneCommande> ligneCommandes; 
 	
 	
 	
@@ -133,6 +135,17 @@ public class Produit {
 		if (idProduit != other.idProduit)
 			return false;
 		return true;
+	}
+
+
+
+	public Set<LigneCommande> getLigneCommandes() {
+		return ligneCommandes;
+	}
+
+
+	public void setLigneCommandes(Set<LigneCommande> ligneCommandes) {
+		this.ligneCommandes = ligneCommandes;
 	} 
 	
 	

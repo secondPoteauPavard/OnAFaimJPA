@@ -19,7 +19,7 @@ public class LigneCommande {
 	private LigneCommandePK id; 
 	
 	@Version
-	private Version version;
+	private int version;
 
 	public LigneCommande() {
 	}
