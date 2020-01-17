@@ -7,6 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import model.Devis;
+import model.Etat;
 import util.JpaContext;
 
 public class DAODevisJpaImpl implements DAODevis {
@@ -25,7 +26,7 @@ public class DAODevisJpaImpl implements DAODevis {
 	public List<Devis> findAll() {
 		EntityManager em = JpaContext.getInstance().createEntityManager();
 		List<Devis> Deviss=null;
-		Query query=em.createQuery("select p from Devis p");
+		Query query=em.createQuery("select d from Devis d");
 		Deviss=query.getResultList();
 		em.close();
 		return Deviss;
@@ -110,14 +111,14 @@ public class DAODevisJpaImpl implements DAODevis {
 	}
 
 	@Override
-	public List<Devis> findDevisByCEtat(String etat) {
+	public List<Devis> findDevisByCEtat(Etat etat) {
 		EntityManager em = JpaContext.getInstance().createEntityManager();
-		Query query=em.createQuery("from Devis c where c.cEtat=?1");
-		query.setParameter(1, etat);
-		List<Devis> Deviss=null;
-		Deviss=query.getResultList();
+		Query query=em.createQuery("from Devis d where etat=:etat");
+		query.setParameter("etat", etat);
+		List<Devis> deviss=null;
+		deviss=query.getResultList();
 		em.close();
-		return Deviss;
+		return deviss;
 	}
 	
 }

@@ -7,6 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import model.Commande;
+import model.Etat;
 import util.JpaContext;
 
 public class DAOCommandeJpaImpl implements DAOCommande {
@@ -109,7 +110,7 @@ public class DAOCommandeJpaImpl implements DAOCommande {
 	}
 
 	@Override
-	public List<Commande> findCommandeByCEtat(String etat) {
+	public List<Commande> findCommandeByCEtat(Etat etat) {
 		EntityManager em = JpaContext.getInstance().createEntityManager();
 		Query query=em.createQuery("from Commande c where c.cEtat=?1");
 		query.setParameter(1, etat);
