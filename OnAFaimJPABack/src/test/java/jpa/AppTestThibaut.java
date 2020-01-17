@@ -18,6 +18,7 @@ import model.Devis;
 import model.LigneCommande;
 import model.LigneCommandePK;
 import model.Produit;
+import model.TypeCompte;
 import util.JpaContext;
 
 public class AppTestThibaut {
@@ -32,84 +33,51 @@ public class AppTestThibaut {
 		
 		JpaContext.getInstance();
 		
-//		DAOCompte daoC=DaoCompteFactory.getInstance();
-//		DAOCommande daoCom=DAOCommandeFactory.getInstance();
-//		DAODevis daoD=DAODevisFactory.getInstance();
-//		DAOProduit daoP=DAOProduitFactory.getInstance();
-//		DAOLigneCommande daoL=DAOLigneCommandeFactory.getInstance();
-//		
-//		
-//		// ------------------------------ Remplissage de la bdd ---------------------------------
-//		Compte c=new Compte("admin","admin","0644778418","admin@admin.fr","admin");
-//		daoC.insert(c);
-//		
-//		
-//		
-//		for (int i=0;i<60;i++) {
-//			if (i%2==0) {
-//				c=new Compte("doe"+i,"john"+i,"0644702425","john"+i+"@doe.fr","mdp");
-//				daoC.insert(c); // Insert compte
-//			}
-//			Produit p = new Produit();
-//			p.setLibelle("choco"+i);
-//			daoP.insert(p); // insert produit
-//			
-//			Devis d=new Devis();
-//			d.setCompte(c); // insert devis
-//			daoD.insert(d);
-//				
-//			Commande com=new Commande();
-//			com.setCompte(c); // insert commande
-//			daoCom.insert(com);
-//			
-//			
-//			
-//			LigneCommande l=new LigneCommande();
-//			LigneCommandePK lpk=new LigneCommandePK();
-//			lpk.setCommande(com); // insert liste produit
-//			lpk.setProduit(p);
-//			l.setQte(genererNombre(1, 10));
-//			l.setId(lpk);
-//			daoL.insert(l);
-//		}
-//		
-//		// --------------------------------------------------------------------------------
-//		
-//		
-//		
-//		
-//		
-//		/*Compte c=daoC.findByKey(1L);
-//		//Compte c=new Compte("lesueur","thibaut","0644702418","thibautlesueur@hotmail.fr","mdp");
-//		//daoC.insert(c);
-//		
-//		//Commande com=new Commande();
-//		//com.setCompte(c);
-//		//daoCom.insert(com);
-//		
-//		/*Devis d=new Devis();
-//		d.setCompte(c);
-//		daoD.insert(d);
-//		
-//		Produit p=new Produit();
-//		p.setLibelle("choco");
-//		daoP.insert(p);
-//		
-//		LigneCommande l=new LigneCommande();
-//		LigneCommandePK lpk=new LigneCommandePK();
-//		Commande com = daoCom.findByKey(100L);
-//		lpk.setCommande(com);
-//		Produit prod = daoP.findByKey(1L);
-//		lpk.setProduit(prod);
-//		
-//		
-//		
-//		
-//		l.setQte(3);
-//		l.setId(lpk);
-//		daoL.insert(l);*/
-//		
-//		
+		DAOCompte daoC=DaoCompteFactory.getInstance();
+		DAOCommande daoCom=DAOCommandeFactory.getInstance();
+		DAODevis daoD=DAODevisFactory.getInstance();
+		DAOProduit daoP=DAOProduitFactory.getInstance();
+		DAOLigneCommande daoL=DAOLigneCommandeFactory.getInstance();
+		
+		
+		// ------------------------------ Remplissage de la bdd ---------------------------------
+		Compte c=new Compte("admin","admin","0644778418","admin@admin.fr","admin");
+		//c.setCompteEtat(TypeCompte.admin);
+		daoC.insert(c);
+		
+		
+		
+		for (int i=0;i<60;i++) {
+			if (i%2==0) {
+				c=new Compte("doe"+i,"john"+i,"0644702425","john"+i+"@doe.fr","mdp");
+				daoC.insert(c); // Insert compte
+			}
+			Produit p = new Produit();
+			p.setLibelle("choco"+i);
+			daoP.insert(p); // insert produit
+			
+			Devis d=new Devis();
+			d.setCompte(c); // insert devis
+			daoD.insert(d);
+				
+			Commande com=new Commande();
+			com.setCompte(c); // insert commande
+			daoCom.insert(com);
+			
+			
+			
+			LigneCommande l=new LigneCommande();
+			LigneCommandePK lpk=new LigneCommandePK();
+			lpk.setCommande(com); // insert liste produit
+			lpk.setProduit(p);
+			l.setQte(genererNombre(1, 10));
+			l.setId(lpk);
+			daoL.insert(l);
+		}
+		
+		// --------------------------------------------------------------------------------
+		
+		
 		JpaContext.destroy();
 		
 	}
