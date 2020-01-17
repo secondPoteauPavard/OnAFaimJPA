@@ -1,5 +1,7 @@
 package jpa;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import dao.DAOCommande;
@@ -15,6 +17,7 @@ import dao.DaoCompteFactory;
 import model.Commande;
 import model.Compte;
 import model.Devis;
+import model.Etat;
 import model.LigneCommande;
 import model.LigneCommandePK;
 import model.Produit;
@@ -41,8 +44,8 @@ public class AppTestThibaut {
 		
 		
 		// ------------------------------ Remplissage de la bdd ---------------------------------
-		Compte c=new Compte("admin","admin","0644778418","admin@admin.fr","admin");
-		//c.setCompteEtat(TypeCompte.admin);
+		Compte c=new Compte("adminnom","adminprenom","0644778418","admin@admin.fr","admin");
+		c.setType(TypeCompte.admin);
 		daoC.insert(c);
 		
 		
@@ -76,6 +79,12 @@ public class AppTestThibaut {
 		}
 		
 		// --------------------------------------------------------------------------------
+		System.out.println("---------------------------- FIN TIB ------------------------------");
+		
+		List<Devis> l=new ArrayList();		
+		l=daoD.findDevisByCEtat(Etat.W);
+		System.out.println(l);
+
 		
 		
 		JpaContext.destroy();
