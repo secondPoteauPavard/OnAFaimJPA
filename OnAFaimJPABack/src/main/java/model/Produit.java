@@ -22,20 +22,21 @@ public class Produit {
 	@Id
 	@GeneratedValue(generator = "seqProduit", strategy = GenerationType.SEQUENCE)
 	private Long idProduit;
-	@Column(name="wording", nullable = true)
+	@Column(name="libelle", nullable = true)
 	private String libelle;
-	@Column(name="size", nullable = true)
-	private String taille;
-	@Column(name="price", nullable = true)
+	@Column(name="taille", nullable = true)
+	@Enumerated(EnumType.STRING)
+	private TailleProduit taille;
+	@Column(name="prix", nullable = true)
 	private double prix;
 	@Column(name="type",length=25)
 	@Enumerated(EnumType.STRING)
-	private Type type; 
+	private TypeProduit type; 
 	@Lob
 	@Column(name="description")
-	private String Description; 
+	private String description; 
 	@Lob
-	@Column(name="picture")
+	@Column(name="photo")
 	private byte[] photo;
 	@OneToMany(mappedBy = "id.produit")
 	private Set<LigneCommande> ligneCommandes; 
@@ -48,13 +49,13 @@ public class Produit {
 	}
 
 	
-	public Produit(String libelle, String taille, double prix, Type type, String description,
+	public Produit(String libelle, TailleProduit taille, double prix, TypeProduit type, String description,
 			byte[] photo) {
 		this.libelle = libelle;
 		this.taille = taille;
 		this.prix = prix;
 		this.type = type;
-		Description = description;
+		this.description = description;
 		this.photo = photo;
 	}
 
@@ -74,11 +75,11 @@ public class Produit {
 		this.libelle = libelle;
 	}
 
-	public String getTaille() {
+	public TailleProduit getTaille() {
 		return taille;
 	}
 
-	public void setTaille(String taille) {
+	public void setTaille(TailleProduit taille) {
 		this.taille = taille;
 	}
 
@@ -90,20 +91,20 @@ public class Produit {
 		this.prix = prix;
 	}
 
-	public Type getType() {
+	public TypeProduit getType() {
 		return type;
 	}
 
-	public void setType(Type type) {
+	public void setType(TypeProduit type) {
 		this.type = type;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		description = description;
 	}
 
 	

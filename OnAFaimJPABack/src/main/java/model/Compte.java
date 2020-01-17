@@ -109,11 +109,11 @@ public class Compte {
 		this.mdp = mdp;
 	}
 
-	public String getType() {
+	public TypeCompte getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(TypeCompte type) {
 		this.type = type;
 	}
 
@@ -129,6 +129,22 @@ public class Compte {
 		return version;
 	}
 
+	public Set<Commande> getCommandes() {
+		return commandes;
+	}
+
+	public void setCommandes(Set<Commande> commandes) {
+		this.commandes = commandes;
+	}
+
+	public Set<Devis> getDeviss() {
+		return deviss;
+	}
+
+	public void setDeviss(Set<Devis> deviss) {
+		this.deviss = deviss;
+	}
+	
 	public void setVersion(int version) {
 		this.version = version;
 	}
@@ -158,21 +174,7 @@ public class Compte {
 		return true;
 	}
 
-	public Set<Commande> getCommandes() {
-		return commandes;
-	}
-
-	public void setCommandes(Set<Commande> commandes) {
-		this.commandes = commandes;
-	}
-
-	public Set<Devis> getDeviss() {
-		return deviss;
-	}
-
-	public void setDeviss(Set<Devis> deviss) {
-		this.deviss = deviss;
-	}
+	
 	
 	
 

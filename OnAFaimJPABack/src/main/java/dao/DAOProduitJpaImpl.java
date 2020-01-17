@@ -7,6 +7,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import model.Produit;
+import model.TailleProduit;
+import model.TypeProduit;
 import util.JpaContext;
 
 class DAOProduitJpaImpl implements DAOProduit {					
@@ -102,25 +104,27 @@ class DAOProduitJpaImpl implements DAOProduit {
 		delete(findByKey(key)); 
 	}
 
-	
-	public List<Produit> findBySize(String size) {
+	@Override
+	public List<Produit> findBySize(TailleProduit size) {
 		EntityManager em = JpaContext.getInstance().createEntityManager(); 
 		Query query = em.createQuery("from Produit p where p.taille=:taille");
-		query.setParameter("taille", size.toLowerCase());
+		query.setParameter("taille", size);
 		List<Produit> Produits = query.getResultList(); 
 		em.close();
 		return Produits; 
 	}
 	
-	public List<Produit> findByType(String type){
+	public List<Produit> findByType(TypeProduit type){
 		EntityManager em = JpaContext.getInstance().createEntityManager(); 
 		Query query = em.createQuery("from Produit p where p.type=:type");
-		query.setParameter(1, type); 
+		query.setParameter("type", type); 
 		List<Produit> Produits = query.getResultList(); 
 		em.close();
 		return Produits; 
 		
 	}
+
+	
 
 
 	
