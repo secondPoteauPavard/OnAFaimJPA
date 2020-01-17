@@ -6,8 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.Email;
@@ -15,9 +18,11 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="account")
+@SequenceGenerator(name="seqCompte", sequenceName = "seq_account", initialValue = 1, allocationSize = 1)
 public class Compte {
 
 	@Id
+	@GeneratedValue(generator = "seqCompte", strategy = GenerationType.SEQUENCE)
 	private Integer idCompte; 
 	@Column(name="last_name", nullable=false)
 	private String nom;
