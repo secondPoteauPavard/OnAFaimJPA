@@ -15,21 +15,22 @@ import dao.DAOProduit;
 import dao.DAOProduitFactory;
 import dao.DaoCompteFactory;
 import model.Commande;
+import model.Compte;
 import model.Devis;
 import model.Etat;
+import model.LigneCommande;
+import model.LigneCommandePK;
 import model.Produit;
-import model.TailleProduit;
 import model.TypeCompte;
-import model.TypeProduit;
 import util.JpaContext;
 
 public class AppTestLovelyse {
 
-//	public static int genererNombre(int min, int max) {
-//		Random r = new Random() ;
-//		int chiffre = min+r.nextInt(max-min+1) ;
-//		return chiffre;
-//	}
+	public static int genererNombre(int min, int max) {
+		Random r = new Random() ;
+		int chiffre = min+r.nextInt(max-min+1) ;
+		return chiffre;
+	}
 	
 	public static void main(String[] args) {
 		
@@ -38,6 +39,43 @@ public class AppTestLovelyse {
 		DAODevis daoD=DAODevisFactory.getInstance();
 		DAOProduit daoP=DAOProduitFactory.getInstance();
 		DAOLigneCommande daoL=DAOLigneCommandeFactory.getInstance();
+		
+		
+		// ------------------------------ Remplissage de la bdd ---------------------------------
+		Compte c=new Compte("admin","admin","0644778418","admin@admin.fr","admin");
+		c.setType(TypeCompte.admin);
+		daoC.insert(c);
+		
+		
+		for (int i=0;i<60;i++) {
+			if (i%2==0) {
+				c=new Compte("doe"+i,"john"+i,"0644702425","john"+i+"@doe.fr","mdp");
+				daoC.insert(c); // Insert compte
+			}
+			Produit p = new Produit();
+			p.setLibelle("choco"+i);
+			daoP.insert(p); // insert produit
+			
+			Devis d=new Devis();
+			d.setCompte(c); // insert devis
+			daoD.insert(d);
+				
+			Commande com=new Commande();
+			com.setCompte(c); // insert commande
+			daoCom.insert(com);
+			
+			
+			
+			LigneCommande l=new LigneCommande();
+			LigneCommandePK lpk=new LigneCommandePK();
+			lpk.setCommande(com); // insert liste produit
+			lpk.setProduit(p);
+			l.setQte(genererNombre(1, 10));
+			l.setId(lpk);
+			daoL.insert(l);
+		}
+
+		// ------------------------------ bdd remplie ---------------------------------
 		
 		
 //		Produit p=daoP.findByKey(1L);
@@ -81,43 +119,9 @@ public class AppTestLovelyse {
 //		daoL.insert(l);
 		
 		
-												//APPTESTTHIBAUT
+											
 		
-		// ------------------------------ Remplissage de la bdd ---------------------------------
-//		Compte c=new Compte("admin","admin","0644778418","admin@admin.fr","admin");
-//		c.setCompteEtat(TypeCompte.admin);
-//		daoC.insert(c);
-//		
-//		
-//		
-//		for (int i=0;i<60;i++) {
-//			if (i%2==0) {
-//				c=new Compte("doe"+i,"john"+i,"0644702425","john"+i+"@doe.fr","mdp");
-//				daoC.insert(c); // Insert compte
-//			}
-//			Produit p = new Produit();
-//			p.setLibelle("choco"+i);
-//			daoP.insert(p); // insert produit
-//			
-//			Devis d=new Devis();
-//			d.setCompte(c); // insert devis
-//			daoD.insert(d);
-//				
-//			Commande com=new Commande();
-//			com.setCompte(c); // insert commande
-//			daoCom.insert(com);
-//			
-//			
-//			
-//			LigneCommande l=new LigneCommande();
-//			LigneCommandePK lpk=new LigneCommandePK();
-//			lpk.setCommande(com); // insert liste produit
-//			lpk.setProduit(p);
-//			l.setQte(genererNombre(1, 10));
-//			l.setId(lpk);
-//			daoL.insert(l);
-//		}
-
+		
 		
 		
 		JpaContext.destroy();
