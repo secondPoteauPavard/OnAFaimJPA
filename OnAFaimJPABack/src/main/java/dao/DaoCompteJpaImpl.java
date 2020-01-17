@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import model.Compte;
 import model.Etat;
+import model.TypeCompte;
 import util.JpaContext;
 
 public class DaoCompteJpaImpl implements DAOCompte {
@@ -116,7 +117,7 @@ public class DaoCompteJpaImpl implements DAOCompte {
 	}
 
 	@Override
-	public List<Compte> findByType(String type) {
+	public List<Compte> findByType(TypeCompte type) {
 		EntityManager em = JpaContext.getInstance().createEntityManager();
 		Query query = em.createQuery("from Compte c where type=:type");
 		query.setParameter("type", type);
@@ -129,7 +130,7 @@ public class DaoCompteJpaImpl implements DAOCompte {
 	public List<Compte> findByAccountStatus(Etat etat) {
 		EntityManager em = JpaContext.getInstance().createEntityManager();
 		Query query = em.createQuery("from Compte c where compteEtat=:etat");
-		query.setParameter("compteEtat", etat);
+		query.setParameter("etat", etat);
 		List<Compte> comptes = query.getResultList();
 		em.close();
 		return comptes;

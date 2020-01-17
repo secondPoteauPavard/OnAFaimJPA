@@ -1,6 +1,6 @@
 package model;
 
-public enum Type {
+public enum TypeProduit {
 	Viennoiserie, Sandwich, Boissons,Gateau; 
 
 }
