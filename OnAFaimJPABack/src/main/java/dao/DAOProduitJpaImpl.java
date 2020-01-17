@@ -12,7 +12,7 @@ import util.JpaContext;
 class DAOProduitJpaImpl implements DAOProduit {					
 																	
 	@Override
-	public Produit findByKey(Integer key) {
+	public Produit findByKey(Long key) {
 		EntityManager em= JpaContext.getInstance().createEntityManager(); 		 
 		Produit p = null; 
 		p = em.find(Produit.class, key);
@@ -98,7 +98,7 @@ class DAOProduitJpaImpl implements DAOProduit {
 	}
 
 	@Override
-	public void deleteByKey(Integer key) {
+	public void deleteByKey(Long key) {
 		delete(findByKey(key)); 
 	}
 

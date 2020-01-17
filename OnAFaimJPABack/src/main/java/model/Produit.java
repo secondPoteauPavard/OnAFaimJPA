@@ -1,7 +1,11 @@
 package model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,15 +21,15 @@ import javax.persistence.Table;
 public class Produit {
 	@Id
 	@GeneratedValue(generator = "seqProduit", strategy = GenerationType.SEQUENCE)
-	//@OneToMany(mappedBy = "id.produit")
-	//@JoinColumn(name="produit_id", foreignKey = @ForeignKey(name="commande_produit_produit_id_fk"))
-	private int idProduit;
+	private Long idProduit;
 	@Column(name="wording", nullable = true)
 	private String libelle;
 	@Column(name="size", nullable = true)
 	private String taille;
 	@Column(name="price", nullable = true)
 	private double prix;
+	@Column(name="type",length=25)
+	@Enumerated(EnumType.STRING)
 	private Type type; 
 	@Lob
 	@Column(name="description")
@@ -33,8 +37,9 @@ public class Produit {
 	@Lob
 	@Column(name="picture")
 	private byte[] photo;
-	//@OneToMany(mappedBy = "")
-	private LigneCommandePK ligneCommandePK; 
+	@OneToMany(mappedBy = "id.produit")
+	private Set<LigneCommande> ligneCommandes; 
+
 	
 	
 	
@@ -43,9 +48,8 @@ public class Produit {
 	}
 
 	
-	public Produit(int idProduit, String libelle, String taille, double prix, Type type, String description,
+	public Produit(String libelle, String taille, double prix, Type type, String description,
 			byte[] photo) {
-		this.idProduit = idProduit;
 		this.libelle = libelle;
 		this.taille = taille;
 		this.prix = prix;
@@ -54,11 +58,11 @@ public class Produit {
 		this.photo = photo;
 	}
 
-	public int getIdProduit() {
+	public Long getIdProduit() {
 		return idProduit;
 	}
 
-	public void setIdProduit(int idProduit) {
+	public void setIdProduit(Long idProduit) {
 		this.idProduit = idProduit;
 	}
 
@@ -113,13 +117,24 @@ public class Produit {
 	} 
 
 
+	public Set<LigneCommande> getLigneCommandes() {
+		return ligneCommandes;
+	}
+
+
+	public void setLigneCommandes(Set<LigneCommande> ligneCommandes) {
+		this.ligneCommandes = ligneCommandes;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + idProduit;
+		result = prime * result + ((idProduit == null) ? 0 : idProduit.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -130,7 +145,10 @@ public class Produit {
 		if (getClass() != obj.getClass())
 			return false;
 		Produit other = (Produit) obj;
-		if (idProduit != other.idProduit)
+		if (idProduit == null) {
+			if (other.idProduit != null)
+				return false;
+		} else if (!idProduit.equals(other.idProduit))
 			return false;
 		return true;
 	} 

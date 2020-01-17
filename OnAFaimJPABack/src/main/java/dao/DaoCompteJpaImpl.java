@@ -14,7 +14,7 @@ import util.JpaContext;
 public class DaoCompteJpaImpl implements DAOCompte {
 
 	@Override
-	public Compte findByKey(Integer key) {
+	public Compte findByKey(Long key) {
 		EntityManager em= JpaContext.getInstance().createEntityManager();
 		Compte c= null;
 		c= em.find(Compte.class, key);
@@ -97,7 +97,7 @@ public class DaoCompteJpaImpl implements DAOCompte {
 	}
 
 	@Override
-	public void deleteByKey(Integer key) {
+	public void deleteByKey(Long key) {
 		delete(findByKey(key));
 	}
 

@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,13 +26,14 @@ public class Devis {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="seqDevis")
-	private Integer idDevis;
+	private Long idDevis;
 	@Column(name="eval")
 	private int dEval;
 	@Column(name="prix")
 	private double prix;
 	@Column(name="etat",length=15)
-	private String dEtat;
+	@Enumerated(EnumType.STRING)
+	private Etat dEtat=Etat.W;
 	@Column(name="description",length=255)
 	private String description;
 	@Temporal(TemporalType.DATE)
@@ -47,12 +50,12 @@ public class Devis {
 	
 	
 
-	public Integer getIdDevis() {
+	public Long getIdDevis() {
 		return idDevis;
 	}
 
 
-	public void setIdDevis(Integer idDevis) {
+	public void setIdDevis(Long idDevis) {
 		this.idDevis = idDevis;
 	}
 
@@ -77,12 +80,12 @@ public class Devis {
 	}
 
 
-	public String getdEtat() {
+	public Etat getdEtat() {
 		return dEtat;
 	}
 
 
-	public void setdEtat(String dEtat) {
+	public void setdEtat(Etat dEtat) {
 		this.dEtat = dEtat;
 	}
 
