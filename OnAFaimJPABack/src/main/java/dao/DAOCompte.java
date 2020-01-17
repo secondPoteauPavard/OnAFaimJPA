@@ -7,7 +7,7 @@ import model.Compte;
 import model.Etat;
 
 
-public interface DAOCompte extends DAOGeneric<Compte,Integer> {
+public interface DAOCompte extends DAOGeneric<Compte,Long> {
 
 	public Compte checkConnect(String email,String mdp) ;
 	public List<Compte> findByType(String type);

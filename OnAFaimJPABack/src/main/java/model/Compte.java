@@ -14,37 +14,37 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Pattern;
 
 @Entity
-@Table(name="account")
-@SequenceGenerator(name="seqCompte", sequenceName = "seq_account", initialValue = 1, allocationSize = 1)
+@Table(name="compte")
+@SequenceGenerator(name="seqCompte", sequenceName = "seq_Compte", initialValue = 1, allocationSize = 1)
 public class Compte {
 
 	@Id
 	@GeneratedValue(generator = "seqCompte", strategy = GenerationType.SEQUENCE)
-	private Integer idCompte; 
-	@Column(name="last_name", nullable=false)
+	private Long idCompte; 
+	@Column(name="nom", nullable=true)
 	private String nom;
-	@Column(name="first_name", nullable=false)
+	@Column(name="prenom", nullable=true)
 	private String prenom; 
-	@Column(name="number", length=10, nullable=false)
+	@Column(name="tel", length=10, nullable=true)
 	private String numero;
-	@Column(name="email", nullable=false)
+	@Column(name="email", nullable=true)
 	@Email
 	private String email; 
-	@Column(name="password", nullable=false)
+	@Column(name="mdp", nullable=true)
 	private String mdp; 
-	@Column(name="type", nullable=false)
-	private String type; 
+	@Column(name="type",length=6)
 	@Enumerated(EnumType.STRING)
-	@Column(name="account_status", columnDefinition="'en_attente'")
-	private Etat compteEtat;
+	private TypeCompte type=TypeCompte.client; 
+	@Enumerated(EnumType.STRING)
+	@Column(name="compte_etat",length=1)
+	private Etat compteEtat=Etat.W;
 	@Version
 	private int version;
-	@OneToMany(mappedBy="idCom.commande") //PAS UNE ERREUR 
+	@OneToMany(mappedBy="compte") //PAS UNE ERREUR 
 	private Set<Commande> commandes;
-	@OneToMany(mappedBy="idDevis.commande") //PAS UNE ERREUR
+	@OneToMany(mappedBy="compte") //PAS UNE ERREUR
 	private Set<Devis> deviss;
 	
 	
@@ -61,11 +61,11 @@ public class Compte {
 		this.mdp = mdp;
 	}
 
-	public Integer getIdCompte() {
+	public Long getIdCompte() {
 		return idCompte;
 	}
 
-	public void setIdCompte(Integer idCompte) {
+	public void setIdCompte(Long idCompte) {
 		this.idCompte = idCompte;
 	}
 
@@ -156,6 +156,22 @@ public class Compte {
 		} else if (!idCompte.equals(other.idCompte))
 			return false;
 		return true;
+	}
+
+	public Set<Commande> getCommandes() {
+		return commandes;
+	}
+
+	public void setCommandes(Set<Commande> commandes) {
+		this.commandes = commandes;
+	}
+
+	public Set<Devis> getDeviss() {
+		return deviss;
+	}
+
+	public void setDeviss(Set<Devis> deviss) {
+		this.deviss = deviss;
 	}
 	
 	

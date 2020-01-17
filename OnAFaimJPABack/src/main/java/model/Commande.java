@@ -27,12 +27,12 @@ public class Commande {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="seqCommande")
-	private Integer idCom; 
+	private Long idCom; 
 	@Column(name="eval",length=255)
 	private int cEval; 
 	@Enumerated(EnumType.STRING)
-	@Column(name="etat",length=10,columnDefinition = "en_attente")
-	private Etat cEtat; // "en_attente" par défaut
+	@Column(name="etat",length=1)
+	private Etat cEtat=Etat.W; // "en_attente" par défaut
 	@Temporal(TemporalType.DATE)
 	@Column(name="dateCommande")
 	private Date date;
@@ -50,12 +50,12 @@ public class Commande {
 	}
 
 
-	public Integer getIdCom() {
+	public Long getIdCom() {
 		return idCom;
 	}
 
 
-	public void setIdCom(Integer idCom) {
+	public void setIdCom(Long idCom) {
 		this.idCom = idCom;
 	}
 
