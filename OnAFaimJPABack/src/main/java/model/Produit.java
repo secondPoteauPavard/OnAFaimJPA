@@ -2,11 +2,9 @@ package model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -33,9 +31,13 @@ public class Produit {
 	@Column(name="description")
 	private String Description; 
 	@Lob
-	@Column(name="picture", nullable = true)
+	@Column(name="picture")
 	private byte[] photo;
-
+	@OneToMany(mappedBy = "")
+	private LigneCommandePK ligneCommandePK; 
+	
+	
+	
 	
 	public Produit() {
 	}
