@@ -7,6 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import model.Commande;
+import model.Compte;
 import model.Etat;
 import util.JpaContext;
 
@@ -119,5 +120,6 @@ public class DAOCommandeJpaImpl implements DAOCommande {
 		em.close();
 		return commandes;
 	}
+
 
 }
