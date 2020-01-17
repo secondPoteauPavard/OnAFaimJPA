@@ -47,7 +47,7 @@ public class AppTestLovelyse {
 		daoC.insert(c);
 		
 		
-		for (int i=0;i<60;i++) {
+		for (int i=0;i<30;i++) {
 			if (i%2==0) {
 				c=new Compte("doe"+i,"john"+i,"0644702425","john"+i+"@doe.fr","mdp");
 				daoC.insert(c); // Insert compte
@@ -93,6 +93,10 @@ public class AppTestLovelyse {
 		List<Devis> l=new ArrayList<Devis>();		
 		l=daoD.findDevisByCEtat(Etat.W);
 		System.out.println(l);
+		
+//		List<Commande> l=new ArrayList<Commande>();		
+//		l=daoCom.findCommandeByCEtat(Etat.W);
+//		System.out.println(l);
 
 		
 //		Commande com=new Commande();

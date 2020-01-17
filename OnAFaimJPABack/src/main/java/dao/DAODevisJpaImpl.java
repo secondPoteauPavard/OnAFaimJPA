@@ -111,10 +111,10 @@ public class DAODevisJpaImpl implements DAODevis {
 	}
 
 	@Override
-	public List<Devis> findDevisByCEtat(Etat etat) {
+	public List<Devis> findDevisByCEtat(Etat dEtat) {
 		EntityManager em = JpaContext.getInstance().createEntityManager();
-		Query query=em.createQuery("from Devis d where etat=:etat");
-		query.setParameter("etat", etat);
+		Query query=em.createQuery("from Devis d where dEtat=:etat");
+		query.setParameter("etat", dEtat);
 		List<Devis> deviss=null;
 		deviss=query.getResultList();
 		em.close();
